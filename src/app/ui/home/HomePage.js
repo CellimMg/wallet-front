@@ -18,21 +18,14 @@ export default function HomePage() {
     const { user } = useContext(UserContext);
     const [transactions, setTransactions] = useState([]);
 
-
     useEffect(() => {
-        
-           
                 const promise = getTransactions(user.token);
-
                 promise.then(response => {
                     const {transactions} = response;
                     console.log(transactions);
                     setTransactions([...transactions]);
                 });
-
                 promise.catch(error => alert(error));
-           
-        
     }, []);
 
     return (
