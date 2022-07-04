@@ -21,16 +21,17 @@ export default function HomePage() {
 
     useEffect(() => {
         
-        async function getData(){
-            try {
-                const {transactionsResponse} = await getTransactions(user.token);
-                console.log(transactionsResponse); 
-                setTransactions([...transactionsResponse]);
-            } catch (error) {
-                alert(error);
-            }
-        }
-        
+           
+                const promise = getTransactions(user.token);
+
+                promise.then(response => {
+                    const {transactions} = response;
+                    console.log(transactions);
+                    setTransactions([...transactions]);
+                });
+
+                promise.catch(error => alert(error));
+           
         
     }, []);
 
@@ -41,7 +42,7 @@ export default function HomePage() {
                 <Icon src={OutIcon} alt="Icon" />
             </TopBar>
             <Board>
-                {transactions.length === 0 ? "Não há registros deentrada ou saída" : transactions.map(transaction => <div></div>)}
+                {transactions.length === 0 ? "Não há registros de entrada ou saída" : transactions.map(transaction => <div></div>)}
             </Board>
             <Actions>
                 <Button onClick={() => navigate("/transaction", {state: {type: "in"}})} style={{ padding: "10px", height: "115px", alignItems: "flex-start", justifyContent: "space-between" }}>
