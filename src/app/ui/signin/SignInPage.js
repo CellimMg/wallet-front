@@ -13,7 +13,7 @@ export default function SignInPage() {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [loading, setLoading] = useState(false);
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     async function onSubmitForm(event) {
@@ -22,10 +22,7 @@ export default function SignInPage() {
         if (isEmailValid(email) && isPassValid(pass)) {
             try {
                 const response = await signin(email, pass);
-                setUser({
-                    nome: response.nome,
-                    token: response.token
-                });
+                setUser(response);
                 navigate("/");
             } catch (error) {
                 alert(error);

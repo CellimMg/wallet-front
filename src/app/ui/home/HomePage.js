@@ -5,27 +5,53 @@ import Button from "../commom/Button.js";
 import OutIcon from "../../../assets/out_icon.svg";
 import AddIcon from "../../../assets/add_icon.svg";
 import RemoveIcon from "../../../assets/remove-circle-outline.svg";
-
+import UserContext from "../../../context/UserContext.js";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect  } from "react";
+import { getTransactions } from "./HomePageController.js";
 
 
 export default function HomePage() {
 
+
+    const navigate = useNavigate();
+    const { user } = useContext(UserContext);
+    const [transactions, setTransactions] = useState([]);
+
+
+    useEffect(() => {
+        
+        async function getData(){
+            try {
+                const {transactionsResponse} = await getTransactions(user.token);
+                console.log(transactionsResponse); 
+                setTransactions([...transactionsResponse]);
+            } catch (error) {
+                alert(error);
+            }
+        }
+        
+        
+    }, []);
+
     return (
         <Body>
             <TopBar>
-                <span >Olá, fulano</span>
+                <span>Olá, {user.name}</span>
                 <Icon src={OutIcon} alt="Icon" />
             </TopBar>
-            <Board />
+            <Board>
+                {transactions.length === 0 ? "Não há registros deentrada ou saída" : transactions.map(transaction => <div></div>)}
+            </Board>
             <Actions>
-                <Button style={{ padding: "10px", height: "115px", alignItems: "flex-start", justifyContent: "space-between" }}>
+                <Button onClick={() => navigate("/transaction", {state: {type: "in"}})} style={{ padding: "10px", height: "115px", alignItems: "flex-start", justifyContent: "space-between" }}>
                     <Icon src={AddIcon} alt="Icon" />
-                    <span style={{ textAlign: "start", fontSize: "17px" }}>Nova<br />entrada</span>
+                    Nova<br />saída
                 </Button>
                 <div style={{ width: "20px" }}></div>
-                <Button style={{ padding: "10px", height: "115px", alignItems: "flex-start", justifyContent: "space-between" }}>
+                <Button onClick={() => navigate("/transaction", {state: {type: "out"}})} style={{ padding: "10px", height: "115px", alignItems: "flex-start", justifyContent: "space-between" }}>
                     <Icon src={RemoveIcon} alt="Icon" />
-                    <span style={{ textAlign: "start", fontSize: "17px" }}>Nova<br />saída</span>
+                    Nova<br />saída
                 </Button>
             </Actions>
         </Body>
@@ -45,6 +71,13 @@ const Board = styledComponents.div`
     width: 100%;
     background-color: white;
     border-radius: 5px;
+    color: #868686;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 `;
 
 const Icon = styledComponents.img`
