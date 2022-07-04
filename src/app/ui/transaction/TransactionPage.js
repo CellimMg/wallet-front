@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useContext } from "react";
 import { createTransactions } from "./TransactionPageController.js";
 import UserContext from "../../../context/UserContext.js";
-
+import styledComponents from "styled-components";
 
 export default function TransactionPage() {
 
@@ -22,7 +22,7 @@ export default function TransactionPage() {
     async function onSubmitForm(event) {
         event.preventDefault();
         try {
-            await createTransactions(descricao, valor, type, user.token);
+            await createTransactions(user._id, descricao, valor, type, user.token);
             setValor("");
             setDescricao("");
             alert("Transação salva com sucesso!");
@@ -41,7 +41,11 @@ export default function TransactionPage() {
                 <FormField onChange={e => setDescricao(e.target.value)} value={descricao} placeholder="Descrição" />
                 <Button>Salvar {type === "in" ? "entrada" : "saída"}</Button>
             </form>
-            <div style={{ flexGrow: "1" }}></div>
+            <div style={{ flexGrow: "1" }}>
+
+            </div>
         </Body>
     );
 }
+
+

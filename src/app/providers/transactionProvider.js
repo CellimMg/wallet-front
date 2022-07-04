@@ -1,18 +1,19 @@
 import axios from "axios"
 
 
-export async function getTransactions(token){
+export async function getTransactions(token) {
     try {
+        console.log(token);
         const response = await axios.get("http://localhost:5000/transactions", {
-        headers: { Authorization: `Bearer ${token}` }
-    });
+            headers: { "Authorization": `Bearer ${token}` }
+        });
         return response.data;
     } catch (error) {
         throw error;
     }
 }
 
-export async function createTransactions(token, transaction){
+export async function createTransactions(token, transaction) {
     try {
 
         const response = await axios.post("http://localhost:5000/transactions", transaction, {

@@ -1,5 +1,4 @@
 import { signup as signupProvider } from "../../providers/authProvider.js";
-import axios from "axios";
 
 
 export async function signup(email, password, name) {
