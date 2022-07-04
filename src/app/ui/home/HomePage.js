@@ -19,6 +19,8 @@ export default function HomePage() {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
+
+        if (!user.token) return navigate("/signin");
         const promise = getTransactions(user.token, user.uid);
         promise.then(response => {
             const { transactions } = response;

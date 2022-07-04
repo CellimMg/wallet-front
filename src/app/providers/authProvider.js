@@ -6,7 +6,7 @@ export async function signin(email, password) {
             email: email,
             password: password
         }
-        const response = await axios.post("http://localhost:5000/signin", body);
+        const response = await axios.post("https://mywalletmarcelo.herokuapp.com/signin", body);
         return response.data;
     } catch (error) {
         switch (error.response.status) {
@@ -27,7 +27,7 @@ export async function signup(email, password, name) {
             password: password,
             name: name
         }
-        const response = await axios.post("http://localhost:5000/signup", body);
+        const response = await axios.post("https://mywalletmarcelo.herokuapp.com/signup", body);
         return response.data;
     } catch (error) {
         switch (error.response.status) {
