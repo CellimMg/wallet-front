@@ -142,14 +142,18 @@ body,
     height: 100%;
 }
 
-* {
-    box-sizing: border-box;
+.root{
+    background-color: #8C11BE;
+    padding: 25px;
 }
 
-span {
+*, span {
+    box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
-    font-weight: 400
+    font-weight: 400;
+    color: #FFFFFF
 }
+
 
 `;
 
