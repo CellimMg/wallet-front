@@ -3,11 +3,6 @@ import { signup as signupProvider } from "../../providers/authProvider.js";
 
 export async function signup(email, password, name) {
     try {
-        const body = {
-            name: name,
-            email: email,
-            password: password
-        };
         const response = await signupProvider(email, password, name);
         return response.data;
     } catch (error) {

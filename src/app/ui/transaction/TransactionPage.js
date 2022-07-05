@@ -36,12 +36,12 @@ export default function TransactionPage() {
     return (
         <Body>
             <TopBar>
-                <span>Nova {state.type === "in" ? "entrada" : "saída"}</span>
+                <span>Nova {state?.type === "in" ? "entrada" : "saída"}</span>
             </TopBar>
             <form onSubmit={onSubmitForm}>
                 <FormField onChange={e => setValor(e.target.value)} value={valor} style={{ marginTop: "20px" }} placeholder="Valor" />
                 <FormField onChange={e => setDescricao(e.target.value)} value={descricao} placeholder="Descrição" />
-                <Button>Salvar {state.type === "in" ? "entrada" : "saída"}</Button>
+                <Button>Salvar {state?.type === "in" ? "entrada" : "saída"}</Button>
             </form>
             <div style={{ flexGrow: "1" }}>
 

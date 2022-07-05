@@ -37,7 +37,7 @@ export default function SignInPage() {
             <form onSubmit={onSubmitForm}>
                 <FormField disabled={loading} value={email} placeholder="E-mail" onChange={e => setEmail(e.target.value)} type={"email"}></FormField>
                 <FormField disabled={loading} value={pass} placeholder="Senha" onChange={e => setPass(e.target.value)} type={"password"}></FormField>
-                <Button disabled={loading} style={{ marginBottom: "36px" }}>Login</Button>
+                <Button disabled={loading} style={{ marginBottom: "36px" }}>Entrar</Button>
             </form>
             <RedirectText onClick={() => navigate("/signup")}>Primeira vez? Cadastre-se!</RedirectText>
         </Body>

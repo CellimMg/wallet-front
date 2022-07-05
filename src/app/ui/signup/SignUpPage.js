@@ -31,6 +31,7 @@ export default function SignUpPage() {
         setLoading(false);
     }
 
+
     return (
         <Body>
             <Logo>MyWallet</Logo>
@@ -41,7 +42,7 @@ export default function SignUpPage() {
                 <FormField value={confirmPass} onChange={e => setConfirmPass(e.target.value)} type="password" placeholder="Confirme a senha" />
                 <Button style={{ marginBottom: "36px" }}>Cadastrar</Button>
             </form>
-            <RedirectText>Já tem uma conta? Entre agora!</RedirectText>
+            <RedirectText onClick={() => navigate("/signin")}>Já tem uma conta? Entre agora!</RedirectText>
         </Body>
     );
 }
